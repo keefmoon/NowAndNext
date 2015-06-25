@@ -11,7 +11,8 @@
 
 @interface NNChannelViewController ()
 
-@property (nonatomic, strong) NSArray *channelArray;
+@property (nonatomic, strong) NSArray *channelNameArray;
+@property (nonatomic, strong) NSArray *channelIdArray;
 
 @end
 
@@ -30,7 +31,8 @@
 {
     [super viewDidLoad];
 
-    self.channelArray = @[@"bbcone", @"bbctwo", @"bbcthree", @"bbcfour", @"cbbc", @"cbeebies", @"bbcnews", @"parliament", @"bbcalba"];
+    self.channelNameArray = @[@"BBC One", @"BBC Two", @"BBC Three", @"BBC Four", @"CBBC", @"CBeebies", @"BBC News", @"Parliament", @"BBC Alba"];
+    self.channelIdArray = @[@"bbcone", @"bbctwo", @"bbcthree", @"bbcfour", @"cbbc", @"cbeebies", @"bbcnews", @"parliament", @"bbcalba"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +52,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.channelArray.count;
+    return self.channelIdArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,7 +60,7 @@
     static NSString *CellIdentifier = @"ChannelCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = self.channelArray[indexPath.row];
+    cell.textLabel.text = self.channelNameArray[indexPath.row];
     
     return cell;
 }
@@ -71,7 +73,8 @@
     
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     
-    scheduleVC.channelName = self.channelArray[selectedIndexPath.row];
+    scheduleVC.title = self.channelNameArray[selectedIndexPath.row];
+    scheduleVC.channelName = self.channelIdArray[selectedIndexPath.row];
     
     if (selectedIndexPath.row == 0) {
         

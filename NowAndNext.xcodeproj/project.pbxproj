@@ -24,6 +24,7 @@
 		2F112C5F17D6845600FA46FA /* NowAndNextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F112C5E17D6845600FA46FA /* NowAndNextTests.m */; };
 		2F112C6A17D6855100FA46FA /* NNChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F112C6917D6855100FA46FA /* NNChannelViewController.m */; };
 		2F112C6D17D687D300FA46FA /* NNScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F112C6C17D687D300FA46FA /* NNScheduleViewController.m */; };
+		2F579684183ED4850048A3B9 /* NNDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F579683183ED4850048A3B9 /* NNDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		2F112C6917D6855100FA46FA /* NNChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNChannelViewController.m; sourceTree = "<group>"; };
 		2F112C6B17D687D300FA46FA /* NNScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNScheduleViewController.h; sourceTree = "<group>"; };
 		2F112C6C17D687D300FA46FA /* NNScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNScheduleViewController.m; sourceTree = "<group>"; };
+		2F579682183ED4850048A3B9 /* NNDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNDetailViewController.h; sourceTree = "<group>"; };
+		2F579683183ED4850048A3B9 /* NNDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				2F112C6917D6855100FA46FA /* NNChannelViewController.m */,
 				2F112C6B17D687D300FA46FA /* NNScheduleViewController.h */,
 				2F112C6C17D687D300FA46FA /* NNScheduleViewController.m */,
+				2F579682183ED4850048A3B9 /* NNDetailViewController.h */,
+				2F579683183ED4850048A3B9 /* NNDetailViewController.m */,
 			);
 			path = NowAndNext;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F112C3A17D6845600FA46FA /* main.m in Sources */,
+				2F579684183ED4850048A3B9 /* NNDetailViewController.m in Sources */,
 				2F112C3E17D6845600FA46FA /* NNAppDelegate.m in Sources */,
 				2F112C6A17D6855100FA46FA /* NNChannelViewController.m in Sources */,
 				2F112C6D17D687D300FA46FA /* NNScheduleViewController.m in Sources */,
@@ -460,6 +466,7 @@
 				2F112C6417D6845600FA46FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F112C6517D6845600FA46FA /* Build configuration list for PBXNativeTarget "NowAndNextTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				2F112C6717D6845600FA46FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

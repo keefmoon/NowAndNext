@@ -7,6 +7,7 @@
 //
 
 #import "NNScheduleViewController.h"
+#import "NNDetailViewController.h"
 
 @interface NNScheduleViewController ()
 
@@ -29,12 +30,21 @@
 {
     [super viewDidLoad];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    if (self.tableView.indexPathForSelectedRow) {
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    }
+}
                              
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    self.title = self.channelName;
+//    self.title = self.channelName;
     
     NSString *scheduleString = [NSString stringWithFormat:@"http://www.bbc.co.uk/%@/programmes/schedules.json", self.channelName];
     if (self.region) {
@@ -78,7 +88,7 @@
                                    }
                                    
                                }
-                               
+                               NSLog(@"DATA: %@", self.programmes);
                                [self.tableView reloadData];
                                
                            }];
@@ -114,11 +124,10 @@
     static NSString *CellIdentifier = @"ProgrammeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if (indexPath.section == 0) {
-        cell.textLabel.text = self.programmes[0][@"programme"][@"title"];
-    } else {
-        cell.textLabel.text = self.programmes[indexPath.row+1][@"programme"][@"title"];
-    }
+    NSInteger programmeIndex = [self programmeIndexForIndexPath:indexPath];
+    
+    cell.textLabel.text = self.programmes[programmeIndex][@"programme"][@"display_titles"][@"title"];
+    cell.detailTextLabel.text = self.programmes[programmeIndex][@"programme"][@"display_titles"][@"subtitle"];
     
     return cell;
 }
@@ -132,17 +141,34 @@
     }
 }
 
-#pragma mark - Table view delegate
+#pragma mark - Segue Methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"pushDetail"]) {
+        
+        NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
+        NSInteger programmeIndex = [self programmeIndexForIndexPath:selectedIndexPath];
+        NSDictionary *programmeDictionary = self.programmes[programmeIndex];
+        
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        NNDetailViewController *detailVC = (NNDetailViewController *)navController.topViewController;
+        
+        detailVC.programmeDictionary = programmeDictionary;
+    }
+    
+}
+
+#pragma mark - Helper Methods
+
+- (NSInteger)programmeIndexForIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        return 0;
+    } else {
+        return indexPath.row+1;
+    }
+    
 }
 
 @end
